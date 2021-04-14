@@ -10,15 +10,16 @@
   <body>
     <content class="flexCenter">
       <h1>Roll the dice !</h1>
-      <div>
-        <button id="4" class="btn-dice">Roll the dice ! &#9671;4</button>
-        <button id="6" class="btn-dice">Roll the dice ! &#9671;6</button>
-        <button id="20" class="btn-dice">Roll the dice ! &#9671;20</button>
-      </div>
-      <div id="launch" class="hide">
-        The result is : <span id="value"></span>.
-      </div>
-      <button id="clear">--Clear the results--</button>
+      <section class="radioDice">
+        <input type="radio" id="dice4" name="dice" value="4" />
+        <label for="dice4">4 &#9671; dice</label>
+        <input type="radio" id="dice6" name="dice" value="6" />
+        <label for="dice6">6 &#9671; dice</label>
+        <input type="radio" id="dice20" name="dice" value="20" />
+        <label for="dice20">20 &#9671; dice</label>
+        <button id="rolling">Roll the dice !</button>
+        <div id="result"></div>
+      </section>
     </content>
     <script src="app.js"></script>
   </body>
