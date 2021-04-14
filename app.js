@@ -20,12 +20,33 @@ let rollDice = function () {
     let dResult = Math.floor(Math.random() * dValue) + 1;
 
     // Show the result in the HTML
-    let resultText = document.getElementById("result");
     resultText.innerHTML = `<p>The dice result is ${dResult}.</p>`; //Adding results so we have an record of previous results
+
+    // Roll counter
+    rollCount++;
+
+    //new line in the result record table
+    newResultRec += `<tr><td>${rollCount}</td><td>${dValue}</td><td>${dResult}</td></tr>`;
+    resultTable.innerHTML = newResultRec;
+    btnReset.classList.replace("hide", "show");
   }
 };
 
-const btnRoll = document.getElementById("rolling"); //select the button
+let clearAll = function () {
+  //clear result records from the table
+  newResultRec = "";
+  resultTable.innerHTML = newResultRec;
+
+  // hide the rest btn
+  btnReset.classList.replace("show", "hide");
+};
+
+const btnRoll = document.getElementById("rolling"); //select the roll button
+const resultText = document.getElementById("result"); //select the div where we show the result
+const resultTable = document.getElementById("resultRecord"); //select the table where to insert results
+let rollCount = 0;
+let newResultRec = "";
+const btnReset = document.getElementById("reset"); // select reset button
 
 btnRoll.onclick = rollDice; //launch the function on click
-let rollCount = 0;
+btnReset.onclick = clearAll; //clear the roll record
