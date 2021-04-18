@@ -22,3 +22,14 @@ th {
 tr {
   border: 1px solid black;
 }
+
+#error {
+  opacity: 0;
+}
+
+#error p {
+  padding: 0.3rem;
+  background: red;
+  color: white;
+  border-radius: 0.2rem;
+}
