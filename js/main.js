@@ -1,30 +1,3 @@
-// let clearAll = function () {
-//   //clear result records from the table
-//   newResultRec = "";
-//   resultTable.innerHTML = newResultRec;
-
-//   //reset the counter
-//   rollCount = 0;
-
-//   // hide the rest btn
-//   btnReset.classList.replace("show", "hide");
-// };
-
-// const btnRoll = document.getElementById("rolling"); //select the roll button
-// const resultText = document.getElementById("result"); //select the div where we show the result
-// const resultTable = document.getElementById("resultRecord"); //select the table where to insert results
-// let rollCount = 0;
-// let newResultRec = "";
-// const btnReset = document.getElementById("reset"); // select reset button
-
-// btnRoll.onclick = rollDice; //launch the function on click
-// btnReset.onclick = clearAll; //clear the roll record
-
-// fonctions :
-// - suppression de résultats
-
-import { fadeOut, fadeIn } from "./fade.mjs"; // retreive the fadeIn and fadeOut functions
-
 const diceGroup = document.querySelectorAll('input[name="dice"]'); //store all the radio in a array
 const btnRoll = document.getElementById("rolling"); //select the roll button
 const resultArea = document.getElementById("result"); //select the div where we show the result
@@ -33,6 +6,35 @@ const resultTable = document.getElementById("resultRecord"); //select the table 
 const btnReset = document.getElementById("reset"); // select reset button
 
 let rollCount = 0; // number of roll counter
+let op = 0; // Faded element opacity
+let timer = 10; // setInterval value for fadeIn and fadeOut
+let opGap = 0.2; // Gap between intervals to show or hide the block
+
+function fadeIn(elem) {
+  function show() {
+    if (op > 1) {
+      // When opacity = 1, stop the loop
+      clearInterval(timerF);
+      return;
+    }
+    elem.style.opacity = op;
+    op += opGap; // Increase the opacity at each round
+  }
+  let timerF = setInterval(show, timer, elem);
+}
+
+function fadeOut(elem) {
+  function hide() {
+    if (op <= 0) {
+      // When opacity = 0, stop the loop
+      clearInterval(timerF);
+      return;
+    }
+    op -= opGap; // Decrease the opacity at each round
+    elem.style.opacity = op;
+  }
+  let timerF = setInterval(hide, timer + 0.2, elem);
+}
 
 // Function launched when rolling the dice
 function rollDice() {
